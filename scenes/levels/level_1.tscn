@@ -1,0 +1,268 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/levels/sample_level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/actors/teacher.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/actors/best_friend.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/actors/student.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/npc_3_anim.tres" type="SpriteFrames" id=5]
+[ext_resource path="res://assets/sprites/npc_4_anim.tres" type="SpriteFrames" id=6]
+
+[node name="Level" instance=ExtResource( 1 )]
+GAME_TIME = 60
+
+[node name="StudentRoot" parent="YSort" index="1" instance=ExtResource( 4 )]
+position = Vector2( 168, 1088 )
+
+[node name="Student" parent="YSort/StudentRoot" index="0"]
+DIRECTION = 0
+START_DIRECTION = 2
+SPEED = 1.5
+
+[node name="Dialog" parent="YSort/StudentRoot/Student" index="3"]
+frame = 0
+
+[node name="TurnPoint1" parent="YSort/StudentRoot" index="1"]
+position = Vector2( 0, 136 )
+
+[node name="TurnPoint2" parent="YSort/StudentRoot" index="2"]
+position = Vector2( -352, 112 )
+
+[node name="TurnPoint3" parent="YSort/StudentRoot" index="3"]
+position = Vector2( -328, -112 )
+
+[node name="TurnPoint4" parent="YSort/StudentRoot" index="4"]
+position = Vector2( 16, -96 )
+
+[node name="TeacherRoot" parent="YSort" index="37" instance=ExtResource( 2 )]
+position = Vector2( 616, 1208 )
+
+[node name="Teacher" parent="YSort/TeacherRoot" index="0"]
+IS_WALKING = true
+DIRECTION = 1
+
+[node name="Dialog" parent="YSort/TeacherRoot/Teacher" index="3"]
+frame = 0
+
+[node name="TurnPoint1" parent="YSort/TeacherRoot" index="1"]
+position = Vector2( -8, 352 )
+
+[node name="TurnPoint2" parent="YSort/TeacherRoot" index="2"]
+position = Vector2( -24, 0 )
+
+[node name="TurnPoint3" parent="YSort/TeacherRoot" index="3"]
+position = Vector2( 464, 336 )
+
+[node name="TurnPoint4" parent="YSort/TeacherRoot" index="4"]
+position = Vector2( 448, -16 )
+
+[node name="BestFriendRoot" parent="YSort" index="38" instance=ExtResource( 3 )]
+position = Vector2( 728, 840 )
+
+[node name="Dialog" parent="YSort/BestFriendRoot/BestFriend" index="3"]
+frame = 2
+
+[node name="StudentRoot2" parent="YSort" index="39" instance=ExtResource( 4 )]
+position = Vector2( 816, 1400 )
+
+[node name="Student" parent="YSort/StudentRoot2" index="0"]
+IS_WALKING = false
+
+[node name="AnimatedSprite" parent="YSort/StudentRoot2/Student" index="1"]
+frames = ExtResource( 5 )
+
+[node name="Dialog" parent="YSort/StudentRoot2/Student" index="3"]
+frame = 3
+
+[node name="StudentRoot3" parent="YSort" index="40" instance=ExtResource( 4 )]
+position = Vector2( 832, 1400 )
+
+[node name="Student" parent="YSort/StudentRoot3" index="0"]
+IS_WALKING = false
+
+[node name="Dialog" parent="YSort/StudentRoot3/Student" index="3"]
+frame = 0
+
+[node name="StudentRoot4" parent="YSort" index="41" instance=ExtResource( 4 )]
+position = Vector2( 856, 1400 )
+
+[node name="Student" parent="YSort/StudentRoot4" index="0"]
+IS_WALKING = false
+
+[node name="AnimatedSprite" parent="YSort/StudentRoot4/Student" index="1"]
+frames = ExtResource( 6 )
+
+[node name="Dialog" parent="YSort/StudentRoot4/Student" index="3"]
+frame = 1
+
+[node name="StudentRoot9" parent="YSort" index="42" instance=ExtResource( 4 )]
+position = Vector2( 856, 1192 )
+
+[node name="Student" parent="YSort/StudentRoot9" index="0"]
+IS_WALKING = false
+
+[node name="AnimatedSprite" parent="YSort/StudentRoot9/Student" index="1"]
+frames = ExtResource( 5 )
+
+[node name="StudentRoot10" parent="YSort" index="43" instance=ExtResource( 4 )]
+position = Vector2( 880, 1192 )
+
+[node name="Student" parent="YSort/StudentRoot10" index="0"]
+IS_WALKING = false
+
+[node name="Dialog" parent="YSort/StudentRoot10/Student" index="3"]
+frame = 4
+
+[node name="StudentRoot11" parent="YSort" index="44" instance=ExtResource( 4 )]
+position = Vector2( 904, 1192 )
+
+[node name="Student" parent="YSort/StudentRoot11" index="0"]
+IS_WALKING = false
+
+[node name="AnimatedSprite" parent="YSort/StudentRoot11/Student" index="1"]
+frames = ExtResource( 6 )
+
+[node name="Dialog" parent="YSort/StudentRoot11/Student" index="3"]
+frame = 0
+
+[node name="StudentRoot12" parent="YSort" index="45" instance=ExtResource( 4 )]
+position = Vector2( 928, 1192 )
+
+[node name="Student" parent="YSort/StudentRoot12" index="0"]
+IS_WALKING = false
+
+[node name="AnimatedSprite" parent="YSort/StudentRoot12/Student" index="1"]
+frames = ExtResource( 6 )
+
+[node name="Dialog" parent="YSort/StudentRoot12/Student" index="3"]
+frame = 4
+
+[node name="StudentRoot6" parent="YSort" index="46" instance=ExtResource( 4 )]
+position = Vector2( 1216, 1176 )
+
+[node name="Student" parent="YSort/StudentRoot6" index="0"]
+IS_WALKING = false
+
+[node name="AnimatedSprite" parent="YSort/StudentRoot6/Student" index="1"]
+frames = ExtResource( 5 )
+
+[node name="Dialog" parent="YSort/StudentRoot6/Student" index="3"]
+frame = 3
+
+[node name="StudentRoot7" parent="YSort" index="47" instance=ExtResource( 4 )]
+position = Vector2( 1232, 1176 )
+
+[node name="Student" parent="YSort/StudentRoot7" index="0"]
+IS_WALKING = false
+
+[node name="Dialog" parent="YSort/StudentRoot7/Student" index="3"]
+frame = 0
+
+[node name="StudentRoot8" parent="YSort" index="48" instance=ExtResource( 4 )]
+position = Vector2( 1256, 1176 )
+
+[node name="Student" parent="YSort/StudentRoot8" index="0"]
+IS_WALKING = false
+
+[node name="AnimatedSprite" parent="YSort/StudentRoot8/Student" index="1"]
+frames = ExtResource( 6 )
+
+[node name="Dialog" parent="YSort/StudentRoot8/Student" index="3"]
+frame = 1
+
+[node name="StudentRoot5" parent="YSort" index="49" instance=ExtResource( 4 )]
+position = Vector2( 728, 1432 )
+
+[node name="Student" parent="YSort/StudentRoot5" index="0"]
+START_DIRECTION = 2
+
+[node name="Dialog" parent="YSort/StudentRoot5/Student" index="3"]
+frame = 1
+
+[node name="TurnPoint1" parent="YSort/StudentRoot5" index="1"]
+position = Vector2( 0, 72 )
+
+[node name="TurnPoint2" parent="YSort/StudentRoot5" index="2"]
+position = Vector2( -24, 8 )
+
+[node name="TurnPoint3" parent="YSort/StudentRoot5" index="3"]
+position = Vector2( 24, 56 )
+
+[node name="TurnPoint4" parent="YSort/StudentRoot5" index="4"]
+position = Vector2( 0, -16 )
+
+[node name="BestFriendRoot2" parent="YSort" index="50" instance=ExtResource( 3 )]
+position = Vector2( 168, 1656 )
+
+[node name="BestFriend" parent="YSort/BestFriendRoot2" index="0"]
+IS_WALKING = true
+DIRECTION = 1
+START_DIRECTION = 1
+SPEED = 2.0
+
+[node name="Dialog" parent="YSort/BestFriendRoot2/BestFriend" index="3"]
+frame = 2
+
+[node name="TurnPoint1" parent="YSort/BestFriendRoot2" index="1"]
+position = Vector2( -24, 0 )
+
+[node name="TurnPoint3" parent="YSort/BestFriendRoot2" index="3"]
+position = Vector2( 440, -16 )
+
+[node name="TurnPoint4" parent="YSort/BestFriendRoot2" index="4"]
+position = Vector2( 464, 0 )
+
+[node name="TeacherRoot2" parent="YSort" index="51" instance=ExtResource( 2 )]
+position = Vector2( 336, 872 )
+
+[node name="Teacher" parent="YSort/TeacherRoot2" index="0"]
+IS_WALKING = true
+START_DIRECTION = 1
+SPEED = 1.5
+
+[node name="Dialog" parent="YSort/TeacherRoot2/Teacher" index="3"]
+frame = 2
+
+[node name="TurnPoint1" parent="YSort/TeacherRoot2" index="1"]
+position = Vector2( -168, 208 )
+
+[node name="TurnPoint2" parent="YSort/TeacherRoot2" index="2"]
+position = Vector2( -152, -8 )
+
+[node name="TurnPoint3" parent="YSort/TeacherRoot2" index="3"]
+position = Vector2( 152, 224 )
+
+[node name="TurnPoint4" parent="YSort/TeacherRoot2" index="4"]
+position = Vector2( 168, 8 )
+
+[node name="Onigiri" parent="HUD/FoodBar" index="0"]
+margin_left = 20.0
+margin_right = 36.0
+
+[node name="Hotdog" parent="HUD/FoodBar" index="1"]
+visible = false
+margin_left = 30.0
+margin_right = 46.0
+
+[node name="Dango" parent="HUD/FoodBar" index="2"]
+visible = false
+
+[node name="Cola" parent="HUD/FoodBar" index="3"]
+margin_left = 40.0
+margin_right = 56.0
+
+[editable path="YSort/StudentRoot"]
+[editable path="YSort/TeacherRoot"]
+[editable path="YSort/BestFriendRoot"]
+[editable path="YSort/StudentRoot2"]
+[editable path="YSort/StudentRoot3"]
+[editable path="YSort/StudentRoot4"]
+[editable path="YSort/StudentRoot9"]
+[editable path="YSort/StudentRoot10"]
+[editable path="YSort/StudentRoot11"]
+[editable path="YSort/StudentRoot12"]
+[editable path="YSort/StudentRoot6"]
+[editable path="YSort/StudentRoot7"]
+[editable path="YSort/StudentRoot8"]
+[editable path="YSort/StudentRoot5"]
+[editable path="YSort/BestFriendRoot2"]
+[editable path="YSort/TeacherRoot2"]

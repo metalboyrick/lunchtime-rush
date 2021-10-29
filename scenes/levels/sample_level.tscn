@@ -1,0 +1,661 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://scenes/levels/radar.gd" type="Script" id=1]
+[ext_resource path="res://scenes/actors/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/arrow.png" type="Texture" id=3]
+[ext_resource path="res://scenes/misc/hotdog_stall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/misc/cola_stall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/misc/dango_stall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/misc/onigiri_stall.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/sprites/hallway_tiles.tres" type="TileSet" id=9]
+[ext_resource path="res://scenes/levels/open_area_tileset.tres" type="TileSet" id=10]
+[ext_resource path="res://scenes/misc/flower_pot.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/sprites/bulletin_board_2.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/bulletin_board_1.png" type="Texture" id=13]
+[ext_resource path="res://scenes/misc/locker.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/sprites/hotdog.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/dango.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/onigiri.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/cola.png" type="Texture" id=18]
+[ext_resource path="res://scenes/levels/food_bar.gd" type="Script" id=19]
+[ext_resource path="res://assets/sprites/door.png" type="Texture" id=20]
+[ext_resource path="res://assets/sprites/clock.png" type="Texture" id=21]
+[ext_resource path="res://scenes/levels/level.gd" type="Script" id=22]
+[ext_resource path="res://assets/sprites/finish_flag.png" type="Texture" id=23]
+[ext_resource path="res://assets/sounds/main_game.ogg" type="AudioStream" id=26]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 20 )
+region = Rect2( 24, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 20 )
+region = Rect2( 48, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 20 )
+region = Rect2( 72, 0, 24, 32 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=6]
+resource_name = "New Anim"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 0.366021, 1 ),
+"update": 0,
+"values": [ Vector2( 530.273, 814.443 ), Vector2( 530.273, 817.851 ), Vector2( 530.273, 814.443 ) ]
+}
+
+[sub_resource type="CapsuleShape2D" id=7]
+height = 44.0001
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 22 )
+GAME_TIME = 100
+
+[node name="BackgroundWrapper" type="Node2D" parent="."]
+z_index = -3
+
+[node name="Background" type="ColorRect" parent="BackgroundWrapper"]
+margin_left = -808.0
+margin_top = -64.0
+margin_right = 2120.0
+margin_bottom = 2182.0
+color = Color( 0.109804, 0.109804, 0.109804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hallways" type="TileMap" parent="."]
+z_index = -1
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 112, 112 )
+cell_quadrant_size = 112
+format = 1
+tile_data = PoolIntArray( 262145, 0, 131072, 262147, 0, 0, 262148, 0, 0, 262150, 0, 0, 262152, 0, 65536, 262153, 0, 131074, 327680, 0, 131072, 327681, 0, 65536, 327682, 0, 3, 327685, 0, 65538, 327687, 0, 65538, 327689, 0, 65538, 393216, 0, 65538, 393218, 0, 65538, 393221, 0, 65538, 393223, 0, 65538, 393225, 0, 65538, 458752, 0, 65539, 458754, 0, 65536, 458755, 0, 0, 458757, 0, 65536, 458759, 0, 131073, 458761, 0, 65538, 589823, 0, 0, 524288, 0, 0, 524289, 0, 3, 524292, 0, 65538, 524294, 0, 65538, 524297, 0, 2, 524298, 0, 0, 524299, 0, 0, 655358, 0, 65538, 589825, 0, 2, 589826, 0, 0, 589827, 0, 0, 589828, 0, 3, 589830, 0, 65538, 589833, 0, 65538, 589836, 0, 65538, 720894, 0, 65539, 720895, 0, 65537, 655360, 0, 0, 655361, 0, 3, 655364, 0, 65539, 655365, 0, 65537, 655366, 0, 65536, 655367, 0, 0, 655368, 0, 0, 655369, 0, 1, 655370, 0, 0, 655371, 0, 0, 655372, 0, 131073, 786431, 0, 65538, 720897, 0, 65538, 720901, 0, 65538, 720905, 0, 65538, 851967, 0, 65538, 786433, 0, 2, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786437, 0, 3, 786438, 0, 131072, 786440, 0, 131074, 786441, 0, 65538, 917503, 0, 2, 851968, 0, 0, 851969, 0, 3, 851973, 0, 2, 851974, 0, 65536, 851975, 0, 65536, 851976, 0, 65536, 851977, 0, 131073, 983039, 0, 65538, 917505, 0, 2, 917506, 0, 0, 917508, 0, 0, 917509, 0, 3, 1048575, 0, 65539, 983040, 0, 0, 983041, 0, 131073, 983043, 0, 65539, 983044, 0, 0, 983045, 0, 131073 )
+
+[node name="OpenArea" type="TileMap" parent="."]
+z_index = -1
+tile_set = ExtResource( 10 )
+cell_size = Vector2( 112, 112 )
+cell_quadrant_size = 112
+format = 1
+tile_data = PoolIntArray( 196616, 0, 1, 262146, 0, 131072, 262149, 0, 131072, 262151, 0, 131072, 458753, 0, 131072, 458756, 0, 131072, 458758, 0, 131072, 589822, 0, 65538, 524300, 0, 65537, 786439, 0, 131072, 917507, 0, 131072 )
+
+[node name="ColaStall" parent="." instance=ExtResource( 6 )]
+position = Vector2( -168, 952 )
+
+[node name="DangoStall" parent="." instance=ExtResource( 7 )]
+position = Vector2( 952, 392 )
+
+[node name="HotdogStall" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1400, 960 )
+
+[node name="OnigiriStall" parent="." instance=ExtResource( 8 )]
+position = Vector2( 392, 1632 )
+
+[node name="Door" type="AnimatedSprite" parent="."]
+position = Vector2( 504, 816 )
+frames = SubResource( 5 )
+
+[node name="Door4" type="AnimatedSprite" parent="."]
+position = Vector2( 288, 1384 )
+frames = SubResource( 5 )
+
+[node name="Door2" type="AnimatedSprite" parent="."]
+position = Vector2( 160, 816 )
+frames = SubResource( 5 )
+
+[node name="Door3" type="AnimatedSprite" parent="."]
+position = Vector2( 280, 480 )
+frames = SubResource( 5 )
+
+[node name="BulletinBoard" type="Sprite" parent="."]
+position = Vector2( 837.989, 1373.73 )
+texture = ExtResource( 13 )
+
+[node name="BulletinBoard3" type="Sprite" parent="."]
+position = Vector2( -18.2379, 1154.33 )
+texture = ExtResource( 13 )
+
+[node name="BulletinBoard2" type="Sprite" parent="."]
+position = Vector2( 504.635, 1716.61 )
+texture = ExtResource( 13 )
+
+[node name="BulletinBoard4" type="Sprite" parent="."]
+position = Vector2( 48, 1496 )
+texture = ExtResource( 13 )
+
+[node name="BulletinBoard5" type="Sprite" parent="."]
+position = Vector2( 1235.65, 1156.08 )
+texture = ExtResource( 12 )
+
+[node name="BulletinBoard6" type="Sprite" parent="."]
+position = Vector2( 612.762, 1157.66 )
+texture = ExtResource( 12 )
+
+[node name="BulletinBoard7" type="Sprite" parent="."]
+position = Vector2( 612.212, 476.934 )
+texture = ExtResource( 12 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 504, 840 )
+
+[node name="FlowerPot2" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 240, 840 )
+
+[node name="FlowerPot3" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( -183.447, 1211.63 )
+
+[node name="FlowerPot4" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 576, 840 )
+
+[node name="FlowerPot5" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 760, 832 )
+
+[node name="FlowerPot6" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 784, 1512 )
+
+[node name="FlowerPot7" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 316.147, 1622.04 )
+
+[node name="FlowerPot8" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 1416.42, 1212.63 )
+
+[node name="FlowerPot9" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 958.566, 1170.66 )
+
+[node name="FlowerPot12" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 730.608, 497.454 )
+
+[node name="FlowerPot13" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 629.045, 1768.41 )
+
+[node name="FlowerPot10" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( -104, 952 )
+
+[node name="FlowerPot11" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 152.865, 1427.24 )
+
+[node name="FlowerPot16" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 400.535, 1396.95 )
+
+[node name="FlowerPot17" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 549.315, 1396.06 )
+
+[node name="FlowerPot15" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 1228.88, 947.755 )
+
+[node name="FlowerPot14" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 341.64, 1059.13 )
+
+[node name="FlowerPot" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 224, 616 )
+
+[node name="Locker" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 1.40314, 952.701 )
+
+[node name="Locker2" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 25.3416, 952.701 )
+
+[node name="Locker3" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 49.3416, 952.701 )
+
+[node name="Locker14" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 417.638, 499.175 )
+
+[node name="Locker16" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 441.56, 499.036 )
+
+[node name="Locker17" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 465.316, 499.036 )
+
+[node name="Locker18" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 488.914, 499.036 )
+
+[node name="Locker15" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 394.136, 499.181 )
+
+[node name="Locker4" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 836.118, 1176.61 )
+
+[node name="Locker5" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 859.538, 1176.61 )
+
+[node name="Locker6" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 882.696, 1176.61 )
+
+[node name="Locker7" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 906.445, 1176.61 )
+
+[node name="Locker8" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 930.31, 1176.61 )
+
+[node name="Locker9" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 523.016, 1404.3 )
+
+[node name="Locker10" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 499.682, 1404.3 )
+
+[node name="Locker11" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 475.937, 1404.3 )
+
+[node name="Locker12" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 452.153, 1404.3 )
+
+[node name="Locker13" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 428.666, 1404.3 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="FoodBar" type="HBoxContainer" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -38.0
+margin_top = -26.0
+margin_right = 38.0
+alignment = 1
+script = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Onigiri" type="TextureRect" parent="HUD/FoodBar"]
+modulate = Color( 1, 1, 1, 0.388235 )
+margin_right = 16.0
+margin_bottom = 26.0
+texture = ExtResource( 17 )
+
+[node name="Hotdog" type="TextureRect" parent="HUD/FoodBar"]
+modulate = Color( 1, 1, 1, 0.498039 )
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 26.0
+texture = ExtResource( 15 )
+
+[node name="Dango" type="TextureRect" parent="HUD/FoodBar"]
+modulate = Color( 1, 1, 1, 0.498039 )
+margin_left = 40.0
+margin_right = 56.0
+margin_bottom = 26.0
+texture = ExtResource( 16 )
+
+[node name="Cola" type="TextureRect" parent="HUD/FoodBar"]
+modulate = Color( 1, 1, 1, 0.498039 )
+margin_left = 60.0
+margin_right = 76.0
+margin_bottom = 26.0
+texture = ExtResource( 18 )
+
+[node name="TimerSection" type="HBoxContainer" parent="HUD"]
+margin_left = 10.0
+margin_top = 5.0
+margin_right = 84.065
+margin_bottom = 37.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TimerSection"]
+margin_left = 1.0
+margin_right = 33.0
+margin_bottom = 32.0
+texture = ExtResource( 21 )
+stretch_mode = 6
+
+[node name="TimeLabel" type="Label" parent="HUD/TimerSection"]
+margin_left = 37.0
+margin_top = 9.0
+margin_right = 73.0
+margin_bottom = 23.0
+text = "00:00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseScreen" type="Popup" parent="HUD"]
+pause_mode = 2
+margin_right = 480.0
+margin_bottom = 272.0
+
+[node name="PauseBackground" type="ColorRect" parent="HUD/PauseScreen"]
+margin_right = 480.0
+margin_bottom = 272.0
+color = Color( 0, 0, 0, 0.545098 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/PauseScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -31.0
+margin_right = 100.0
+margin_bottom = 31.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HUD/PauseScreen/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 14.0
+text = "Game Paused"
+align = 1
+
+[node name="ContinueButton" type="Button" parent="HUD/PauseScreen/VBoxContainer"]
+margin_top = 18.0
+margin_right = 200.0
+margin_bottom = 38.0
+text = "Continue"
+
+[node name="QuitButton" type="Button" parent="HUD/PauseScreen/VBoxContainer"]
+margin_top = 42.0
+margin_right = 200.0
+margin_bottom = 62.0
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinScreen" type="Popup" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseBackground" type="ColorRect" parent="HUD/WinScreen"]
+margin_left = -220.0
+margin_top = -115.0
+margin_right = 260.0
+margin_bottom = 157.0
+color = Color( 0, 0, 0, 0.545098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/WinScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -31.0
+margin_right = 100.0
+margin_bottom = 31.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HUD/WinScreen/VBoxContainer"]
+margin_top = 12.0
+margin_right = 237.0
+margin_bottom = 26.0
+text = "Level completed ! Thanks for playing!"
+align = 1
+
+[node name="NextButton" type="Button" parent="HUD/WinScreen/VBoxContainer"]
+margin_top = 30.0
+margin_right = 237.0
+margin_bottom = 50.0
+text = "Back to menu"
+
+[node name="LoseScreen" type="Popup" parent="HUD"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseBackground" type="ColorRect" parent="HUD/LoseScreen"]
+margin_left = -220.0
+margin_top = -115.0
+margin_right = 260.0
+margin_bottom = 157.0
+color = Color( 0, 0, 0, 0.545098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/LoseScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -31.0
+margin_right = 100.0
+margin_bottom = 31.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HUD/LoseScreen/VBoxContainer"]
+margin_top = 12.0
+margin_right = 237.0
+margin_bottom = 26.0
+text = "You lost"
+align = 1
+
+[node name="RestartButton" type="Button" parent="HUD/LoseScreen/VBoxContainer"]
+margin_top = 30.0
+margin_right = 237.0
+margin_bottom = 50.0
+text = "Restart"
+
+[node name="Radar" type="Control" parent="HUD"]
+visible = false
+modulate = Color( 0.509804, 1, 0.678431, 0.705882 )
+margin_right = 480.0
+margin_bottom = 272.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnigiriRadar" type="Control" parent="HUD/Radar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -16.0
+margin_right = 8.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Sprite" parent="HUD/Radar/OnigiriRadar"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, 18 )
+
+[node name="Item" type="Sprite" parent="HUD/Radar/OnigiriRadar"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 17 )
+
+[node name="DangoRadar" type="Control" parent="HUD/Radar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -16.0
+margin_right = 8.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Sprite" parent="HUD/Radar/DangoRadar"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, 18 )
+
+[node name="Item" type="Sprite" parent="HUD/Radar/DangoRadar"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 16 )
+
+[node name="ColaRadar" type="Control" parent="HUD/Radar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -16.0
+margin_right = 8.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Sprite" parent="HUD/Radar/ColaRadar"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, 18 )
+
+[node name="Item" type="Sprite" parent="HUD/Radar/ColaRadar"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 18 )
+
+[node name="HotdogRadar" type="Control" parent="HUD/Radar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -16.0
+margin_right = 8.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Sprite" parent="HUD/Radar/HotdogRadar"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, 18 )
+
+[node name="Item" type="Sprite" parent="HUD/Radar/HotdogRadar"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 15 )
+
+[node name="GoalRadar" type="Control" parent="HUD/Radar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -16.0
+margin_right = 8.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Sprite" parent="HUD/Radar/GoalRadar"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, 18 )
+
+[node name="Item" type="Sprite" parent="HUD/Radar/GoalRadar"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 23 )
+
+[node name="RadarCenter" type="Position2D" parent="HUD/Radar"]
+position = Vector2( 240, 136 )
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
+
+[node name="FinishFlag" type="Sprite" parent="."]
+position = Vector2( 530.273, 814.473 )
+texture = ExtResource( 23 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FinishFlag"]
+method_call_mode = 1
+"anims/New Anim" = SubResource( 6 )
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2( 504, 840 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource( 7 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Goal"]
+
+[node name="BgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 26 )
+
+[connection signal="enter_stall" from="ColaStall" to="YSort/Player" method="_on_ColaStall_enter_stall"]
+[connection signal="exit_stall" from="ColaStall" to="YSort/Player" method="_on_ColaStall_exit_stall"]
+[connection signal="stall_exit_range" from="ColaStall" to="HUD/Radar" method="_on_ColaStall_stall_exit_range"]
+[connection signal="stall_in_range" from="ColaStall" to="HUD/Radar" method="_on_ColaStall_stall_in_range"]
+[connection signal="enter_stall" from="DangoStall" to="YSort/Player" method="_on_DangoStall_enter_stall"]
+[connection signal="exit_stall" from="DangoStall" to="YSort/Player" method="_on_DangoStall_exit_stall"]
+[connection signal="stall_exit_range" from="DangoStall" to="HUD/Radar" method="_on_DangoStall_stall_exit_range"]
+[connection signal="stall_in_range" from="DangoStall" to="HUD/Radar" method="_on_DangoStall_stall_in_range"]
+[connection signal="enter_stall" from="HotdogStall" to="YSort/Player" method="_on_HotdogStall_enter_stall"]
+[connection signal="exit_stall" from="HotdogStall" to="YSort/Player" method="_on_HotdogStall_exit_stall"]
+[connection signal="stall_exit_range" from="HotdogStall" to="HUD/Radar" method="_on_HotdogStall_stall_exit_range"]
+[connection signal="stall_in_range" from="HotdogStall" to="HUD/Radar" method="_on_HotdogStall_stall_in_range"]
+[connection signal="enter_stall" from="OnigiriStall" to="YSort/Player" method="_on_OnigiriStall_enter_stall"]
+[connection signal="exit_stall" from="OnigiriStall" to="YSort/Player" method="_on_OnigiriStall_exit_stall"]
+[connection signal="stall_exit_range" from="OnigiriStall" to="HUD/Radar" method="_on_OnigiriStall_stall_exit_range"]
+[connection signal="stall_in_range" from="OnigiriStall" to="HUD/Radar" method="_on_OnigiriStall_stall_in_range"]
+[connection signal="all_items_obtained" from="YSort/Player" to="." method="_on_Player_all_items_obtained"]
+[connection signal="item_added" from="YSort/Player" to="HUD/FoodBar" method="_on_Player_item_added"]
+[connection signal="obtain_mission" from="HUD/FoodBar" to="YSort/Player" method="_on_FoodBar_obtain_mission"]
+[connection signal="pressed" from="HUD/PauseScreen/VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="HUD/PauseScreen/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="HUD/WinScreen/VBoxContainer/NextButton" to="." method="_on_NextButton_pressed"]
+[connection signal="pressed" from="HUD/LoseScreen/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
+[connection signal="body_entered" from="Goal" to="." method="_on_Goal_body_entered"]
+[connection signal="viewport_entered" from="Goal/VisibilityNotifier2D" to="HUD/Radar" method="_on_VisibilityNotifier2D_viewport_entered"]
+[connection signal="viewport_exited" from="Goal/VisibilityNotifier2D" to="HUD/Radar" method="_on_VisibilityNotifier2D_viewport_exited"]

@@ -1,0 +1,116 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/sprites/npc_1_anim.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://scenes/actors/student.gd" type="Script" id=6]
+[ext_resource path="res://assets/sprites/bump_ouch.png" type="Texture" id=7]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.55354
+height = 0.727341
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 40, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 7 )
+region = Rect2( 40, 0, 40, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 7 )
+region = Rect2( 80, 0, 40, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 120, 0, 40, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 7 )
+region = Rect2( 160, 0, 40, 32 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+
+[sub_resource type="RectangleShape2D" id=9]
+
+[sub_resource type="RectangleShape2D" id=10]
+
+[sub_resource type="RectangleShape2D" id=11]
+
+[node name="StudentRoot" type="YSort"]
+
+[node name="Student" type="KinematicBody2D" parent="." groups=[
+"npc",
+]]
+script = ExtResource( 6 )
+IS_WALKING = true
+
+[node name="ColorRect" type="ColorRect" parent="Student"]
+visible = false
+margin_left = -8.0
+margin_top = -16.0
+margin_right = 8.0
+margin_bottom = 16.0
+color = Color( 1, 0.0352941, 0.0352941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Student"]
+frames = ExtResource( 1 )
+animation = "idle_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Student"]
+position = Vector2( -0.198425, 5.42047 )
+shape = SubResource( 1 )
+
+[node name="Dialog" type="AnimatedSprite" parent="Student"]
+visible = false
+position = Vector2( 24, -24 )
+scale = Vector2( 0.75, 0.75 )
+frames = SubResource( 7 )
+frame = 2
+playing = true
+
+[node name="TurnPoint1" type="Area2D" parent="."]
+position = Vector2( -24, 24 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurnPoint1"]
+shape = SubResource( 8 )
+
+[node name="TurnPoint2" type="Area2D" parent="."]
+position = Vector2( 0, 24 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurnPoint2"]
+shape = SubResource( 9 )
+
+[node name="TurnPoint3" type="Area2D" parent="."]
+position = Vector2( 24, 24 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurnPoint3"]
+shape = SubResource( 10 )
+
+[node name="TurnPoint4" type="Area2D" parent="."]
+position = Vector2( 48, 24 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurnPoint4"]
+shape = SubResource( 11 )

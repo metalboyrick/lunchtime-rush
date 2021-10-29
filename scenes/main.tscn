@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/main.gd" type="Script" id=1]
+[ext_resource path="res://scenes/actors/student.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/hallway_tiles.tres" type="TileSet" id=3]
+[ext_resource path="res://scenes/actors/player.tscn" type="PackedScene" id=4]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_right = 480.0
+margin_bottom = 272.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+format = 1
+tile_data = PoolIntArray( 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( -240, 0 )
+
+[node name="Camera2D" parent="Player" index="5"]
+current = false
+
+[node name="FoodIndicator" parent="Player" index="6"]
+frame = 3
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_right = 480.0
+margin_bottom = 272.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -31.0
+margin_right = 100.0
+margin_bottom = 31.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 14.0
+text = "Lunchtime Rush"
+align = 1
+
+[node name="Level1Button" type="Button" parent="Control/VBoxContainer"]
+margin_top = 18.0
+margin_right = 200.0
+margin_bottom = 38.0
+text = "Level 1"
+
+[node name="Level2Button" type="Button" parent="Control/VBoxContainer"]
+visible = false
+margin_top = 42.0
+margin_right = 200.0
+margin_bottom = 62.0
+text = "Level 2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="Control/VBoxContainer"]
+margin_top = 42.0
+margin_right = 200.0
+margin_bottom = 62.0
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StudentRoot" parent="." instance=ExtResource( 2 )]
+position = Vector2( -40, 184 )
+
+[node name="Student" parent="StudentRoot" index="0"]
+DIRECTION = 0
+START_DIRECTION = 1
+
+[node name="Dialog" parent="StudentRoot/Student" index="3"]
+frame = 0
+
+[node name="TurnPoint1" parent="StudentRoot" index="1"]
+position = Vector2( -40, -8 )
+
+[node name="TurnPoint2" parent="StudentRoot" index="2"]
+position = Vector2( -64, 112 )
+
+[node name="TurnPoint3" parent="StudentRoot" index="3"]
+position = Vector2( 616, 128 )
+
+[node name="TurnPoint4" parent="StudentRoot" index="4"]
+position = Vector2( 632, 8 )
+
+[connection signal="pressed" from="Control/VBoxContainer/Level1Button" to="." method="_on_Level1Button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+
+[editable path="Player"]
+[editable path="StudentRoot"]
